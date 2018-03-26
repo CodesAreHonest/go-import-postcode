@@ -40,7 +40,6 @@ func initDB() {
 	sqldb, err := sql.Open("postgres", dbInfo)
 	checkErr(err, "Initialize database")
 	
-//	sqldb.SetConnMaxLifetime(1)
 	sqldb.SetMaxOpenConns(90)
 	db = sqldb
 }
@@ -64,26 +63,6 @@ func insert_key() {
 	
 	// ensure all routines finish before returning
 	defer wg.Wait()
-	
-//		go func (c chan int) {
-//			for i := 0; i < ENTRIES ; i++ { 
-//			res, err := stmt.Exec(detail_id[i],  county_id[i], lac_id[i], ward_id[i], country_id[i], region_id[i], par_cons_id[i], eer_id[i], pct_id[i], lsoa_id[i], msoa_id[i], oac_id[i], greek_coordinate_id[i])
-//			checkErr(err, "Insert statement execution error") 
-//			
-//			if res == nil { 
-//				log.Fatal(err)
-//			}
-//			
-//		}
-//			
-//		}(finishChan) 
-//	
-//	
-//	select { 
-//		case n := <- finishChan:
-//			fmt.Println(n)
-//	}
-
 	
 	for i := ENTRIES; i > 0 ; i-- { 
 		wg.Add(1)
